@@ -1,0 +1,43 @@
+[
+    {
+      "id": 1,
+      "nom": "Samah",
+      "prenom": "Samah",
+      "mot_de_passe": "password123",
+      "num_tel": "023456789",
+      "role": "el woroud"
+    },
+    {
+      "id": 2,
+      "nom": "Zahia ",
+      "prenom": "Zahia",
+      "mot_de_passe": "securepass456",
+      "num_tel": "087654321",
+      "role": "Ouladyaich"
+    },
+    {
+      "id": 3,
+      "nom": "Toufik ",
+      "prenom": "Toufik",
+      "mot_de_passe": "mypassword789",
+      "num_tel": "023456789",
+      "role": "Boufarik"
+    },
+    {
+      "id": 4,
+      "nom": "Islam ",
+      "prenom": "Islam",
+      "mot_de_passe": "passcode321",
+      "num_tel": "087654321",
+      "role": "Aafroun"
+    },
+    {
+      "id": 5,
+      "nom": "Douaa ",
+      "prenom": "Douaa",
+      "mot_de_passe": "workerpass654",
+      "num_tel": "087654321",
+      "role": "Mozaia"
+    }
+  ]
+  

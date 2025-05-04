@@ -1,0 +1,119 @@
+[
+  {
+      "client_id": 2345673456,
+      "name": "samah ",
+      "surname": "sam",
+      "phone_number": "023456789",
+      "etat": "non traiter",
+      "total_amount": "2.45M",
+      "client_type": "corporate",
+      "region": "el woroud",
+      "adresse":"blida , joinville",
+      "plus": "more"
+  },
+  {
+      "client_id": 3456765432,
+      "name": "zahia ",
+      "surname": "zahia",
+      "phone_number": "087654321",
+      "etat": "huissier",
+      "total_amount": "4.6M",
+      "client_type": "residential",
+      "region": "el woroud",
+      "adresse":"blida , joinville",
+      "plus": "more"
+  },
+  {
+      "client_id": 2345645334,
+      "name": "toufik ",
+      "surname": "toufik",
+      "phone_number": "023456789",
+      "etat": "payment regle",
+      "total_amount": "5.6M",
+      "client_type": "residential",
+      "region": "el woroud",
+      "adresse":"blida , joinville",
+      "plus": "more"
+  },
+  {
+      "client_id": 4876543344,
+      "name": "islam ",
+      "surname": "islam",
+      "phone_number": "087654321",
+      "etat": "avocat",
+      "total_amount": "7.2M",
+      "client_type": "corporate",
+      "region": "el woroud",
+      "adresse":"blida , joinville",
+      "plus": "more"
+  },
+  {
+      "client_id": 3456787645,
+      "name": "douaa ",
+      "surname": "douaa",
+      "phone_number": "087654321",
+      "etat": "en cours",
+      "total_amount": "6M",
+      "client_type": "corporate",
+      "region": "el woroud",
+      "plus": "more"
+  },
+  {
+      "client_id": 3456765576,
+      "name": "ahmed ",
+      "surname": "ahmed",
+      "phone_number": "065432187",
+      "etat": "non traiter",
+      "total_amount": "3.8M",
+      "client_type": "residential",
+      "region": "el woroud",
+      "plus": "more"
+  },
+  {
+      "client_id": 9876543457,
+      "name": "karim ",
+      "surname": "karim",
+      "phone_number": "079876543",
+      "etat": "avocat",
+      "total_amount": "9.1M",
+      "client_type": "corporate",
+      "region": "el woroud",
+      "plus": "more"
+  },
+  {
+      "client_id": 4567876538,
+      "name": "nour ",
+      "surname": "nour",
+      "phone_number": "077654321",
+      "etat": "huissier",
+      "total_amount": "8.5M",
+      "client_type": "residential",
+      "region": "el woroud",
+      "adresse":"blida , joinville",
+      "plus": "more"
+  },
+  {
+      "client_id": 4567654369,
+      "name": "yasmine ",
+      "surname": "yasmine",
+      "phone_number": "066543210",
+      "etat": "payment regle",
+      "total_amount": "4.9M",
+      "client_type": "corporate",
+      "region": "el woroud",
+      "adresse":"blida , joinville",
+      "plus": "more"
+  },
+  {
+      "client_id": 1456765450,
+      "name": "fatima ",
+      "surname": "yasmine",
+      "phone_number": "062345678",
+      "etat": "non traiter",
+      "total_amount": "5.3M",
+      "client_type": "residential",
+      "region": "el woroud",
+      "adresse":"blida , joinville",
+      "plus": "more"
+  }
+]

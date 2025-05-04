@@ -1,0 +1,73 @@
+.wrapper{
+    width: 420px;
+    background: white;
+    color: #233e83;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.wrapper h1{
+    font-size: 36px;
+    text-align: center;
+}
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height:50px;
+    margin: 30px 0;
+}
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: 0.5px solid #c4d1f4;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 20px 45px 20px 20px;
+}
+.input-box input::placeholder {
+    color: rgb(96, 96, 96);
+}
+
+.wrapper button {
+    width: 100%;
+    height: 45px;
+    background: #233e83;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: 0 0 10px white;
+    cursor: pointer;
+    font-size: 20px;
+    color: white; 
+    font-weight: 700;
+}
+.wrapper .login-image {
+    width: 180px;
+    margin-left:25%;
+  }
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+  }
+  .error-input {
+    border: 1px solid #ff4444 !important;
+  }
+  
+  .spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
