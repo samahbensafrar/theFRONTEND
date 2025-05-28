@@ -154,7 +154,7 @@ const Employees = () => {
                 />
             </div>
 
-            {/* Add Employee Modal */}
+          
             {modal && (
                 <div className="modal">
                     <div className='overlay' onClick={toggleModal}>

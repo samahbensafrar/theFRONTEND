@@ -20,7 +20,7 @@ const LoginForm = () => {
             const response = await axios.post("http://127.0.0.1:8000/token/", { username, password }, { headers: { 'Content-Type': 'application/json' } });
             const { access } = response.data;
             login(access, { username });
-            navigate("/home");
+            navigate("/dashboard");
         } catch (error) {
             console.error("Login error:", error.response?.data || error.message);
             setError(error.response?.data?.detail || "Invalid username or password");

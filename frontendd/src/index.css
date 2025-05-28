@@ -543,7 +543,7 @@ textarea {
   background-color: #e0e0e0; 
 }
 
-/* CHART TITLES INSIDE WHITE BOXES */
+
 .chart-title {
   color: #233E83;
   font-size: 18px;
@@ -553,7 +553,7 @@ textarea {
   text-align: center;
 }
 
-/* CHART CONTAINERS */
+
 .line-chart-container,
 .bar-chart-container,
 .pie-chart-container {
@@ -584,7 +584,6 @@ textarea {
   flex: 1.2;
 }
 
-/* UNCHANGED EXISTING STYLES */
 .dashboard-container {
   display: flex;
   min-height: 100vh;
@@ -594,6 +593,10 @@ textarea {
 .main-container {
   padding: 20px;
   margin-left: 250px;
+ 
+  zoom: 0.9; 
+  transform-origin: top left;
+  
 }
 
 .main-title h3 {
@@ -855,7 +858,7 @@ button:disabled {
 }
 
 .save-button:hover {
-  background-color: #0f2a5a; /* darker blue on hover */
+  background-color: #0f2a5a; 
 }
 
 .cancel-button:hover{

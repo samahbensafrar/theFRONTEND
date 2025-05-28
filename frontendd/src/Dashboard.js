@@ -66,7 +66,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="charts">
-                    {/* Line Chart */}
+                    
                     <div className="line-chart-container">
                         <h3 className="chart-title">Évolution mensuelle des clients réglés vs en cours</h3>
                         {stats.monthly_data &&
@@ -87,9 +87,9 @@ const Dashboard = () => {
                         )}
                     </div>
 
-                    {/* Bottom Charts */}
+                
                     <div className="bottom-charts">
-                        {/* Bar Chart */}
+                       
                         <div className="bar-chart-container">
                             <h3 className="chart-title">Répartition mensuelle des clients</h3>
                             {stats.monthly_data &&
@@ -110,7 +110,6 @@ const Dashboard = () => {
                             )}
                         </div>
 
-                        {/* Pie Chart */}
                         <div className="pie-chart-container">
                             <h3 className="chart-title">Répartition des clients par statut</h3>
                             {stats.total_clients > 0 ? (
