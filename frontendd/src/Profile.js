@@ -55,7 +55,7 @@ const Profile = () => {
   };
   const handleSave = async () => {
     try {
-      // Validate phone number
+     
       if (!employee.phone_number || employee.phone_number.trim() === "") {
         alert("Le numéro de téléphone ne peut pas être vide.");
         return;

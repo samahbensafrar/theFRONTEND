@@ -543,6 +543,53 @@ textarea {
   background-color: #e0e0e0; 
 }
 
+/* CHART TITLES INSIDE WHITE BOXES */
+.chart-title {
+  color: #233E83;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* CHART CONTAINERS */
+.line-chart-container,
+.bar-chart-container,
+.pie-chart-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.line-chart-container {
+  width: 100%;
+}
+
+.bottom-charts {
+  display: flex;
+  gap: 20px;
+  height: 400px;
+}
+
+.bar-chart-container,
+.pie-chart-container {
+  flex: 1;
+}
+
+.pie-chart-container {
+  flex: 1.2;
+}
+
+/* UNCHANGED EXISTING STYLES */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
 
 .main-container {
   padding: 20px;
@@ -577,9 +624,9 @@ textarea {
 .green-card {
   background-color: rgba(61, 182, 75, 0.99);
 }
+
 .purple-card {
   background-color: #682383;
-
 }
 
 .inner-card {
@@ -598,45 +645,11 @@ textarea {
   gap: 20px;
 }
 
-.line-chart-container {
-  width: 100%;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.bottom-charts {
-  display: flex;
-  gap: 20px;
-  height: 400px; /* Add fixed height to contain both charts */
-}
-
-.bar-chart-container,
-.pie-chart-container {
-  flex: 1;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.pie-chart-container {
-  /* Optional: if you want the pie chart to take more space */
-  flex: 1.2; 
-}
-/* Override pie chart arc label text color */
 .pie-chart-container svg g[aria-label="pie"] text {
   fill: white !important;
   font-weight: bold;
   font-size: 14px;
 }
-
-
-
 
 .profilecontainer {
   margin-left: 180px; 

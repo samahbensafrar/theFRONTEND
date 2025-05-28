@@ -8,11 +8,22 @@ import "./index.css";
 const ClientDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  
+
   const [client, setClient] = useState(null);
   const [etat, setEtat] = useState("Non Traité");
   const [total_amount, setTotal_amount] = useState("");
   const [observation, setObservation] = useState("");
   const [history, setHistory] = useState([]);
+
+  const [refModal, setRefModal] = useState(false);
+  const [refValue, setRefValue] = useState("");
+
+  const [personalNumber, setPersonalNumber] = useState("");
+  const [idNumber, setIdNumber] = useState("");
+  const [idDate, setIdDate] = useState("");
+  const [idPlace, setIdPlace] = useState("");
+  const [payment, setPayment] = useState("");
 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/clients/${id}/`)
@@ -20,12 +31,12 @@ const ClientDetails = () => {
         setClient(response.data);
         setEtat(response.data.etat);
         setTotal_amount(response.data.total_amount);
-        setObservation(response.data.observation);  // Load observation from the server
+        setObservation(response.data.observation);
       })
       .catch((error) => {
         console.error("Error fetching client data:", error);
       });
-  
+
     axios.get(`http://127.0.0.1:8000/api/clients/${id}/history/`)
       .then((response) => {
         setHistory(response.data);
@@ -34,7 +45,6 @@ const ClientDetails = () => {
         console.error("Error fetching client history:", error);
       });
   }, [id]);
-  
 
   const handleSave = () => {
     const updatedClient = {
@@ -47,33 +57,30 @@ const ClientDetails = () => {
       address: client.address,
       total_amount: parseFloat(total_amount),
       employee: client.employee,
-      observation: observation,  // Ensure this is part of the request body
+      observation: observation,
     };
-  
-    // Only include etat if it's different from the current one
+
     if (etat !== client.etat) {
       updatedClient.etat = etat;
     }
-  
+
     axios.put(`http://127.0.0.1:8000/api/clients/${id}/`, updatedClient)
       .then((response) => {
         console.log("Saved Client Details:", response.data);
-        
-        // Refresh client data after save and ensure observation is loaded
+
         axios.get(`http://127.0.0.1:8000/api/clients/${id}/`)
           .then((response) => {
             setClient(response.data);
             setEtat(response.data.etat);
             setTotal_amount(response.data.total_amount);
-            setObservation(response.data.observation);  // Make sure observation is updated
+            setObservation(response.data.observation);
           });
-  
-        // Refresh history after save
+
         axios.get(`http://127.0.0.1:8000/api/clients/${id}/history/`)
           .then((response) => {
             setHistory(response.data);
           });
-  
+
         alert("Changes saved!");
       })
       .catch((error) => {
@@ -83,20 +90,56 @@ const ClientDetails = () => {
         }
       });
   };
-  
-  
 
   const handleCancel = () => {
-    navigate(-1); 
+    navigate(-1);
   };
 
   const handlePrint = () => {
-    window.open(`http://127.0.0.1:8000/generate-pdf/${id}/`, '_blank');
+    if (etat === "Paiement en cours" || etat === "Juridique") {
+      setRefModal(true);
+    }
   };
 
-  if (!client) {
-    return <p>Loading client data...</p>;
-  }
+  const confirmPrint = () => {
+    let url = "";
+
+    if (etat === "Paiement en cours") {
+      if (!refValue.trim() || !idNumber.trim() || !idDate.trim() || !idPlace.trim() || !personalNumber.trim() || !payment.trim()) {
+        alert("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      const query = new URLSearchParams({
+        ref: refValue,
+        id_number: idNumber,
+        id_date: idDate,
+        id_place: idPlace,
+        personal_number: personalNumber,
+        payment: payment
+      }).toString();
+
+      url = `http://127.0.0.1:8000/generate-pdftwo/${id}/?${query}`;
+
+    } else if (etat === "Juridique") {
+      if (!refValue.trim()) {
+        alert("Veuillez entrer la référence.");
+        return;
+      }
+
+      url = `http://127.0.0.1:8000/generate-pdf/${id}/?ref=${encodeURIComponent(refValue)}`;
+    }
+
+    window.open(url, "_blank");
+    setRefModal(false);
+    setRefValue("");
+    setIdNumber("");
+    setIdDate("");
+    setIdPlace("");
+    setPayment("");
+  };
+
+  if (!client) return <p>Loading client data...</p>;
 
   return (
     <div>
@@ -105,6 +148,7 @@ const ClientDetails = () => {
       <h1 className="title">Client Details</h1>
       <div className="big-container">
         <div className="container">
+
           <div className="row">
             <div className="form-group">
               <label htmlFor="name">Nom:</label>
@@ -150,7 +194,17 @@ const ClientDetails = () => {
           </div>
 
           <div className="row">
-            <div className="form-group">
+            <div className="form-group" style={{ marginBottom: "1rem" }}>
+              <label htmlFor="personal_number">Numéro Personnel:</label>
+              <input
+                style={{ marginBottom: "1rem" }}
+                type="text"
+                id="personal_number"
+                placeholder="ex: 123456789"
+                value={personalNumber}
+                onChange={(e) => setPersonalNumber(e.target.value)}
+              />
+
               <label htmlFor="etat">État:</label>
               <select id="etat" value={etat} onChange={(e) => setEtat(e.target.value)}>
                 <option value="Payment Réglé">Payment Réglé</option>
@@ -178,7 +232,7 @@ const ClientDetails = () => {
           <button
             className="imprimer-btn"
             onClick={handlePrint}
-            disabled={!["Juridique"].includes(etat)}
+            disabled={!["Juridique", "Paiement en cours"].includes(etat)}
           >
             Imprimer
           </button>
@@ -199,13 +253,71 @@ const ClientDetails = () => {
             ))}
           </ul>
         </div>
-
       </div>
+
+      {refModal && (
+        <div className="modal">
+          <div className="overlay" onClick={() => setRefModal(false)}>
+            <div className="modal-content2" onClick={(e) => e.stopPropagation()}>
+              <h3>{etat === "Paiement en cours" ? "Informations de Paiement" : "Entrer la Référence"}</h3>
+
+              <input
+                type="text"
+                placeholder="Référence (ex: 05/2024)"
+                value={refValue}
+                onChange={(e) => setRefValue(e.target.value)}
+              />
+
+              {etat === "Paiement en cours" && (
+                <>
+                  <input
+                    type="text"
+                    placeholder="Numéro de pièce d'identité"
+                    value={idNumber}
+                    onChange={(e) => setIdNumber(e.target.value)}
+                  />
+                    <input
+                      type="month"
+                      value={idDate}
+                      onChange={(e) => setIdDate(e.target.value)}
+                    />
+
+                  <input
+                    type="text"
+                    placeholder="Lieu de délivrance"
+                    value={idPlace}
+                    onChange={(e) => setIdPlace(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Numéro personnel"
+                    value={personalNumber}
+                    onChange={(e) => setPersonalNumber(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Montant payé"
+                    value={payment}
+                    onChange={(e) => setPayment(e.target.value)}
+                  />
+                </>
+              )}
+
+              <div className="modal-buttons">
+                <button className="cancel" onClick={() => setRefModal(false)}>Annuler</button>
+                <button className="save" onClick={confirmPrint}>Imprimer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default ClientDetails;
+
+
 
 
 
